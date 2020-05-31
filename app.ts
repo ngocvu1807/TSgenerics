@@ -34,3 +34,31 @@ function countAndDescription<T extends Lengthy>(element: T): [T, string] {
 }
 
 console.log(countAndDescription('Hello there'));
+
+function extracAndCover<T extends object, U extends keyof T>(obj: T, key: U) {
+  // keyof constraint
+  return 'value ' + obj[key];
+}
+
+extracAndCover({ name: 'Max' }, 'name');
+
+class DataStorage<T> {
+  private data: T[] = [];
+
+  addItem(item: T) {
+    this.data.push(item);
+  }
+
+  removeData(item: T) {
+    this.data.splice(this.data.indexOf(item), 1);
+  }
+
+  getItem() {
+    return [...this.data];
+  }
+}
+
+const textStorage = new DataStorage<string>();
+textStorage.addItem('Min');
+textStorage.addItem('Max');
+console.log(textStorage.getItem());
