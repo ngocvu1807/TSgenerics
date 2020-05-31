@@ -17,5 +17,20 @@ const mergeObj = merge(
 
   { age: 30 }
 );
-
 console.log(mergeObj);
+
+interface Lengthy {
+  length: number;
+}
+// another Generic function
+function countAndDescription<T extends Lengthy>(element: T): [T, string] {
+  let desc = 'Got no value';
+  if (element.length === 1) {
+    desc = 'Got 1 element ';
+  } else if (element.length > 1) {
+    desc = `Got ${element.length}  elements`;
+  }
+  return [element, desc];
+}
+
+console.log(countAndDescription('Hello there'));
